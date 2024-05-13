@@ -1,0 +1,238 @@
+%
+% Plantilla de informe tipo articulo 
+% UPT - Escuela de Sistemas
+% 
+% Dr. Oscar J. Jimenez Flores
+% Webpage: https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=33398
+% Orcid: https://orcid.org/0000-0002-7981-8467
+%
+
+\documentclass[11pt,a4paper]{article} 
+
+%-----------------------------------------------------------------------------
+% REQUERIMIENTO DE PAQUETES Y CONFIGURACIONES
+%-----------------------------------------------------------------------------
+% PAQUETES PARA TÍTULOS
+\usepackage{titlesec}
+\usepackage{color}
+
+% PAQUETES PARA IDIOMA Y FUENTE
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc} % Codificación de fuente
+
+% PAQUETES PARA IMÁGENES
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+\usepackage{eso-pic} % Para la imagen de fondo en la página de título
+\usepackage{subfig} % Subfiguras numeradas y con leyenda
+\usepackage{caption} % Leyendas de color
+\usepackage{transparent}
+
+% PAQUETES DE MATEMÁTICAS ESTÁNDAR
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage[overload]{empheq} % Para sistemas de ecuaciones con llaves
+
+% PAQUETES PARA TABLAS
+\usepackage{tabularx}
+\usepackage{longtable} % Tablas que pueden abarcar varias páginas
+\usepackage{colortbl}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}% Cambiar el nombre de la tabla en español
+\captionsetup[table]{labelsep=period}% Establecer el separador de etiquetas de las tablas como un punto
+\DeclareCaptionLabelFormat{algorithmlabel}{Código #2.} % Añadir un punto después del número del algoritmo en el título
+\captionsetup[algorithm]{labelformat=algorithmlabel} % Añadir un punto después del número del algoritmo en el título
+
+% PAQUETES PARA ALGORITMOS (PSEUDO-CÓDIGO)
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\floatname{algorithm}{Código}% Cambiar el nombre predeterminado de "Algorithm" a "Código"
+
+% PAQUETES PARA REFERENCIAS Y BIBLIOGRAFÍA
+\usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref} % Añade enlaces clicables a las referencias
+\usepackage{cleveref}
+\usepackage[square, numbers, sort&compress]{natbib} % Corchetes cuadrados, referencias citadas con números, citas ordenadas por aparición en el texto y comprimidas
+\bibliographystyle{plain} % Puedes usar un estilo diferente adaptado a tu campo
+
+% PAQUETES PARA EL APÉNDICE
+\usepackage{appendix}
+
+% PAQUETES PARA ENUMERACIONES Y LISTAS
+\usepackage{enumitem}
+
+% OTROS PAQUETES
+\usepackage{amsthm,thmtools,xcolor} % Teorema coloreado
+\usepackage{comment} % Comentar partes del código
+\usepackage{fancyhdr} % Encabezados y pies de página personalizados
+\usepackage{lipsum} % Insertar texto ficticio
+\usepackage{tcolorbox} % Crear cajas de color (por ejemplo, para las palabras clave)
+\usepackage{float} % Para posicionar las tablas con [H]
+
+
+%-------------------------------------------------------------------------
+% DEFINICIÓN DE NUEVOS COMANDOS
+%-------------------------------------------------------------------------
+% EJEMPLOS DE NUEVOS COMANDOS -> aquí se muestra cómo definir nuevos comandos
+\newcommand{\bea}{\begin{eqnarray}} % Atajo para matrices de ecuaciones
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\e}[1]{\times 10^{#1}} % Notación de potencias de 10
+\newcommand{\mathbbm}[1]{\text{\usefont{U}{bbm}{m}{n}#1}} % De mathbbm.sty
+\newcommand{\pdev}[2]{\frac{\partial#1}{\partial#2}}
+% NB: también puedes sobrescribir algunos comandos existentes con la palabra clave \renewcommand
+
+%----------------------------------------------------------------------------
+% AGREGA TUS PAQUETES (ten cuidado con la interacción de paquetes)
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+% AGREGA TUS DEFINICIONES Y COMANDOS (ten cuidado con los comandos existentes)
+%----------------------------------------------------------------------------
+
+% No cambies el archivo Configuration_files/config.tex a menos que realmente sepas lo que estás haciendo.
+% Este archivo finaliza los procedimientos de configuración (por ejemplo, personalización de comandos, definición de nuevos comandos)
+\input{Configuration_files/config}
+
+% Inserta aquí la información que se mostrará en tu página de título
+% -> título de tu trabajo
+\renewcommand{\title}{PRÁCTICA: “Sistema experto reconocimiento de imagenes”}
+% -> nombres y apellidos del autor o autores, seguido de su código Orcid (https://orcid.org)
+\newcommand{\authorsAndIDs}{%
+    {1. Anthony Cano Sucso, {\href{https://orcid.org/0009-0003-1188-4526}{0009-0003-1188-4526}}}\\ 
+    {2. Jose Luis Jarro C., Código Orcid}
+}
+ {3. Jean Valverde Zamora., Código Orcid}
+}
+
+% -> curso
+\newcommand{\course}{SI-881, Inteligencia Artificial }
+% -> nombre y apellido del docente asesor
+\newcommand{\advisor}{\href{https://dina.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=33398}{Dr. Oscar J. Jimenez Flores}}
+% -> Código Orcid del docente asesor
+\newcommand{\Orcid}{\href{https://orcid.org/0000-0002-7981-8467}{0000-0002-7981-8467}} % inserta si hay alguno, de lo contrario, comenta
+% -> año académico
+\newcommand{\YEAR}{UPT-EPIS, 2024-I}
+% -> resumen (solo en español)
+\renewcommand{\abstract}{%
+Los sistemas expertos son herramientas poderosas para la automatización de tareas basadas en el conocimiento en campos como la medicina, la ingeniería, la gestión empresarial y muchos otros, y han sido objeto de investigación y desarrollo durante décadas.
+    }
+
+% -> palabras clave (solo en inglés)
+\newcommand{\keywords}{Toma de decisiones, Base de conocimiento, Motor de  inferencia .}
+
+%-------------------------------------------------------------------------
+% INICIO DE TU DOCUMENTO
+%-------------------------------------------------------------------------
+\begin{document}
+
+%-----------------------------------------------------------------------------
+% PÁGINA DE TÍTULO
+%-----------------------------------------------------------------------------
+% No cambies Configuration_files/TitlePage.tex (Modifícalo SOLO SI y SOLO SI necesitas agregar o eliminar los co-asesores)
+% Este archivo crea la Página de Título del documento
+\input{Configuration_files/title_page}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEXTO PRINCIPAL          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------------------------------------------------
+% INTRODUCCIÓN
+%-----------------------------------------------------------------------------
+\section{Introducción}
+\label{sec:introduction}
+En el vasto universo de la visión por computadora, la detección de imágenes juega un papel crucial en una variedad de aplicaciones, desde la seguridad y vigilancia hasta el diagnóstico médico y la automatización industrial. Sin embargo, la tarea de identificar y clasificar objetos en imágenes puede ser desafiante debido a la variabilidad en la apariencia, iluminación y condiciones de captura.
+
+En este contexto, la implementación de un sistema experto para la detección de imágenes se presenta como una solución innovadora y eficiente. Este sistema aprovecha el conocimiento experto en el procesamiento de imágenes y la identificación de patrones para realizar tareas como la detección de objetos, reconocimiento facial, clasificación de imágenes y más, con una precisión y velocidad sin precedentes.
+
+
+
+\section{Procedimiento}
+\label{sec:procedimiento}
+
+\begin{itemize}
+Primero importamos lo necesario
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.2\textheight,keepaspectratio]{imagenes/Importaciones.png}
+\end{figure}
+ Definimos las clases necesarias para nuestro sistema:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.3\textheight,keepaspectratio]{imagenes/clases1.png}
+\end{figure}
+\vspace{10pt} 
+\begin{itemize}
+Veremos tambien nuestra clase de clasificacion:
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.2\textheight,keepaspectratio]{imagenes/claseclasificacion.png}
+\end{figure}
+
+\vspace{10pt} 
+\begin{itemize}
+una funcion donde se cargaran las caracteristicas:
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.2\textheight,keepaspectratio]{imagenes/cargacaracteristicas .png}
+\end{figure}
+   \vspace{10pt} 
+\begin{itemize}
+nuestra clase principal sobre el sistema:
+
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.2\textheight,keepaspectratio]{imagenes/claseroedor.png}
+\end{figure}
+\vspace{10pt} 
+\begin{itemize}
+El listado de opciones que tenemos:
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.2\textheight,keepaspectratio]{imagenes/listado.png}
+\end{figure}
+\vspace{10pt} 
+\begin{itemize}
+Las preguntas que ayudaran a nuestro sistema a dar el resultado:
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.2\textheight,keepaspectratio]{imagenes/preguntas.png}
+\end{figure}
+\vspace{10pt} 
+\begin{itemize}
+Funcion donde se muestra el resultado:
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.2\textheight,keepaspectratio]{imagenes/muestraderesultado.png}
+\end{figure}
+
+GitHub: (https://github.com/anthonycs4/SistemaExperto.git)
+
+
+%-----------------------------------------------------------------------------
+% ANÁLISIS DE RESULTADOS
+%-----------------------------------------------------------------------------
+%-----------------------------------------------------------------------------
+% investigacion complementaria 
+%-----------------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------------
+%	FIN DEL DOCUMENTO
+%-------------------------------------------------------------------------
+\end{document}              
